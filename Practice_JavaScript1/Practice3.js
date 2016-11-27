@@ -34,8 +34,8 @@ function addValidation (username, validation){
        };
        
 function deposit (username, amount) {
+    if(amount>0 && !isNaN(parseInt(amount))){
     username.balance += amount;
-    if (amount === Number(amount)){
     console.log("New balance = " + amount);}
     else {"Error, please insert a number!";}
 };
@@ -43,13 +43,24 @@ function deposit (username, amount) {
 
 function withdrawl (username, amount){
   username.balance -= amount;
-    if (amount === Number(amount)){
+    if(amount>0 && !isNaN(parseInt(amount))){
+    username.balance -= amount;
     console.log("New balance = " + amount);}
     else {"Error, please insert a number!";}
 };
 
+function getBalance(user){
+    user = getAccount(user);
+    return function(){
+        var rtnBalance;
+        getAccount(user).balance = rtnBalance;
+    console.log("New balance= " + rtnBalance);
+    return rtnBalance;
+    };
+ };
+
 addValidation("Shila","Ok");
 deposit("Shila",230);
+withdrawl("Shila",55);
 getAccount("Shila");
-withdrawl("Shila","55");
-getAccount("Shila");
+getBalance("Shila");
